@@ -1,0 +1,111 @@
+<style>
+
+
+    .slide li {
+        padding: 15px;
+
+
+    }
+
+    body {
+        padding: 30px;
+    }
+
+    #touch {
+        position: absolute;
+        opacity: 0;
+        height: 0px;
+    }
+
+    #touch:checked + .slide {
+        height: 100vh;
+    }
+
+    .slide li {
+        list-style: none;
+    }
+
+
+    .Hide {
+        display: none;
+    }
+
+    .submit-btns {
+        margin-left: 70%;
+        height: 40px;
+        width: 80px;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 10px;
+        color: white;
+        background-color: black;
+    }
+
+    li a input {
+        width: 100%;
+        border-radius: 20px;
+        text-align: left;
+        padding: 7px;
+    }
+
+    .submit-btn {
+
+        height: 40px;
+        width: 80px;
+
+        font-weight: bold;
+        text-align: center;
+        border-radius: 10px;
+        color: white;
+        background-color: black;
+    }
+
+</style>
+</head>
+<body>
+<button class="btn btn-sm btn-outline-secondary Show " type="button"
+        data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight"><i class="fa fa-search"></i> Search
+</button>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <button type="button"
+                class=" fa fa-times text-reset Hide " style="border: none;background: none"
+                data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body ">
+        <ul class="slide">
+            {#            <li class="text-left"><a href="#">#}
+            {#                <button class="btn btn-sm btn-outline-primary"#}
+            {#                >Submit#}
+            {#                </button>#}
+            {#            </a></li>#}
+            {% include 'form.html' with form=filter.form %}
+
+            <button type="submit" class="btn btn-sm btn-outline-primary">Submit</button>
+            </a></li>
+        </ul>
+    </div>
+</div>
+
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+
+
+<script>
+    $('.Show').click(function () {
+        $('.Show').hide(0);
+        $('.Hide').show(0);
+    });
+    $('.Hide').click(function () {
+
+        $('.Show').show(0);
+        $('.Hide').hide(0);
+    });
+    $('.fa-times').click(function () {
+
+        $('.Show').show(0);
+        $('.Hide').hide(0);
+    });
+</script>

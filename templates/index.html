@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load django_tables2 %}
+{% block main %}
+    <a class="btn btn-secondary" href="{{ import_url }}"><i class="fa fa-file-import"></i> Import CSV</a>
+    {% if add_url %}
+    <a class="btn btn-success" href="{{ add_url }}"><i class="fa fa-plus"></i> Add</a>
+    {% endif %}
+    <br>
+    <hr>
+    {{ header_form|safe }}
+    {% render_table table %}
+{% endblock %}
+
+
+{% block extra_js %}
+    <script>
+        $(".delete-btn").on("click", function () {
+            let btn = $(this)
+            let link = btn.attr("href")
+            let c = confirm("Are you sure you want to delete this?")
+            if (c) {
+                window.location.href = link
+            }
+            return false
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,22 @@
+<div class="card-header pb-0">
+    <div class="row">
+        <div class="col-md-4">
+            <h6>{{ title }}</h6>
+        </div>
+        <div class="col-md-8" style="text-align: end">
+            {{ balance_details }}
+            {% for link in header.links %}
+                <a class="{{ link.classes }}" id="{{ link.id }}" href="{{ link.href }}"><i
+                        class="fa {{ link.icon }}"></i>
+                    {{ link.title }}
+                </a>
+
+            {% endfor %}
+            {% if search %}
+                {% include 'search.html' %}
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+    {{ header.extra_html | safe }}
+</div>

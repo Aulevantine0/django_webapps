@@ -1,0 +1,170 @@
+.navbar-vertical .navbar-nav > .nav-item .nav-link.active .icon {
+    background-image: linear-gradient(310deg, #02F5A3 0%, #2585F2 100%) !important;
+}
+
+.btn-outline-primary {
+    color: #2585F2 !important;
+    border-color: #2585F2 !important;
+}
+
+.btn-outline-secondary {
+    color: #02F5A3 !important;
+    border-color: #02F5A3 !important;
+}
+
+.page-item.active .page-link {
+    background-color: #2585F2 !important;
+    border-color: #2585F2 !important;
+}
+
+.text-customize-primary {
+    color: #2585F2;
+}
+
+.text-customize-secondary {
+    color: #02F5A3;
+}
+
+.btn-outline-success {
+    color: #2585F2 !important;
+    border-color: #2585F2 !important;
+}
+
+.btn-outline-info {
+    color: #02F5A3 !important;
+    border-color: #02F5A3 !important;
+}
+
+.text-gradient.text-info {
+    background-image: linear-gradient(310deg, #02F5A3, #2585F2) !important;
+}
+
+.bg-gradient-info {
+    background-image: linear-gradient(310deg, #02F5A3 0%, #2585F2 100%) !important;
+}
+
+.bg-gradient-secondary {
+    background-image: linear-gradient(310deg, #2585F2 0%, #02F5A3 100%) !important;
+}
+
+.icon-xs i {
+    top: 0 !important;
+    font-size: 1rem !important;
+    color: #000000 !important;
+}
+
+.nav-item .nav-link.active .icon-shape i {
+    color: #ffffff !important;
+}
+
+.custom-control-label::before {
+    background: none !important;
+}
+
+.btn {
+    margin-bottom: 0 !important;
+}
+
+.table-container {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+table tbody tr td:last-child {
+    text-align: center;
+}
+
+.custom-table {
+    width: inherit !important;
+}
+
+.main-content-custom {
+    margin-left: 17.125rem !important;
+}
+
+.main-content-back {
+    margin-left: 0px !important;
+}
+
+.hamburger-logo {
+    position: relative;
+    bottom: 33%;
+    right: 26%;
+}
+
+input[type=checkbox] {
+    position: relative;
+    border: 2px solid #2585F2;
+    border-radius: 5px;
+    background: none;
+    cursor: pointer;
+    line-height: 0;
+    margin: 0 .6em 0 0;
+    outline: 0;
+    padding: 0 !important;
+    vertical-align: text-top;
+    height: 20px;
+    width: 20px;
+    -webkit-appearance: none;
+    opacity: .5;
+}
+
+input[type=checkbox]:hover {
+    opacity: 1;
+}
+
+input[type=checkbox]:checked {
+    background-color: #2585F2;
+    opacity: 1;
+}
+
+input[type=checkbox]:before {
+    content: '';
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    width: 4px;
+    height: 10px;
+    border: solid #FFF;
+    border-width: 0 2px 2px 0;
+    margin: -1px -1px 0 -1px;
+    transform: rotate(45deg) translate(-50%, -50%);
+    z-index: 2;
+}
+
+.input-group > .select2-container {
+    width: auto;
+    flex: 1 1 auto;
+}
+
+.input-group > .select2-container .select2-selection--single {
+    height: 90%;
+    line-height: inherit;
+    /*padding: 0.5rem 1rem;*/
+    border: none;
+}
+.select2-container{
+    height: 40px;
+}
+.input-group > .select2-container .select2-selection--single >.select2-selection__rendered{
+    line-height: 22px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+    top: 7px !important;
+}
+.custom-select+.select2-container >.selection > .select2-selection--single{
+    border: none;
+}
+.custom-select+.select2-container >.selection > .select2-selection--single > .select2-selection__rendered{
+    margin-left: -7px;
+}
+ .select2-selection--multiple{
+    background-color: transparent !important;
+    border: none !important;
+}
+ .navbar-vertical.navbar-expand-xs .navbar-nav .nav-link{
+     margin: 0 !important;
+ }
+ #id_is_active {
+     height: auto;
+ }

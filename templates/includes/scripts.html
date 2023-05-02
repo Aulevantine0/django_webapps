@@ -1,0 +1,109 @@
+<!--   Core JS Files   -->
+{% load static %}
+<script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/smooth-scrollbar.min.js' %}"></script>
+
+<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="{% static 'assets/js/soft-ui-dashboard.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.5/bootstrap-notify.min.js"></script>
+<script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/yadcf/0.9.4-beta.45/jquery.dataTables.yadcf.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+
+<script>
+    function showNotification(message, title = "", type = "info", icon = "") {
+        if (type === "error") {
+            type = "danger"
+            icon = "fa fa-exclamation-circle"
+        }
+        if (type === "success") {
+            icon = "fa fa-check-circle"
+        }
+        $.notify({
+            title: `<strong style="margin-left:10px">${title}</strong>`,
+            icon: icon,
+            message: message
+        }, {
+            type: type,
+            animate: {
+                enter: 'animated fadeInDown',
+                exit: 'animated fadeOutRight'
+            },
+            placement: {
+                from: "top",
+                align: "right"
+            },
+            offset: 10,
+            spacing: 10,
+            z_index: 1031,
+        });
+    }
+
+    {#$(document).ready(function () {#}
+    {#    $('table').DataTable();#}
+</script>
+<script>
+$(document).ready(function () {
+        $('.table').parent('.col-sm-12').addClass('table-responsive');
+});
+</script>
+<script>
+        function gfgMenu() {
+            const GFG = document.querySelector('.sidenav');
+            let main_content = $('.main-content')
+            let hamburger=$('.hamburger-logo')
+            if (GFG.style.transform === "translateX(-17.125rem)") {
+                GFG.style.transform = "none";
+                hamburger.css('display','none')
+                main_content.removeClass('main-content-back')
+                main_content.addClass('main-content-custom')
+            } else {
+                GFG.style.transform = "translateX(-17.125rem)";
+                hamburger.css('display','block')
+                main_content.removeClass('main-content-custom')
+                main_content.addClass('main-content-back')
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            let tableChange = $('.table')
+            tableChange.addClass('custom-table')
+            tableChange.removeClass('table-responsive')
+        });
+    </script>
+
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            showNotification("", "{{ message }}", "{{ message.tags }}", "fa fa-check")
+        </script>
+    {% endfor %}
+{% endif %}
+<script>
+    let collapse_class = "{{ nav_conf.collapse_class }}"
+    if (collapse_class.length > 0) {
+        collapse_class = $(".{{ nav_conf.collapse_class }}")
+    } else {
+        collapse_class = $("")
+    }
+    {#collapse_class = $(".{{ nav_conf.collapse_class }}")#}
+    let active_classes = []
+    {% for active_class in nav_conf.active_classes %}
+        {#console.log("{{ active_class }}")#}
+        active_classes.push("{{ active_class }}")
+    {% endfor %}
+    $(document).ready(function () {
+        console.log(collapse_class, "Colaspe clas+++++++", active_classes)
+        collapse_class.find("a").attr("aria-expanded", "true")
+        collapse_class.parent('ul').addClass("show")
+        for (let active_class of active_classes) {
+            $(`.${active_class}`).children(".nav-link").addClass("active")
+        }
+
+    })
+</script>

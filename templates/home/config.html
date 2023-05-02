@@ -1,0 +1,58 @@
+{% extends "layouts/base.html" %}
+{% load widget_tweaks %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card container mb-4">
+                    {% include 'includes/card-header.html' %}
+                    <div class="card-body px-0 pt-0 pb-2">
+                        <div class=" p-0">
+                            {{ header_form|safe }}
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    {% for field in fields %}
+                                        <div class="col-4">
+                                            <div class="row">
+                                                <div class="col-6 text-sm">{{ field }}</div>
+                                                <div class="col-3">
+                                                    {% if field in config_obj %}
+                                                        <input  type="checkbox"
+                                                               value="{{ field }}" name="checkbox"
+                                                               id="result_checkbox" checked> <span></span>
+                                                    {% else %}
+                                                        <input  type="checkbox"
+                                                               value="{{ field }}" name="checkbox"
+                                                               id="result_checkbox"> <span></span>
+                                                    {% endif %}
+
+                                                </div>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-md-6">
+                                        {% if back_url %}
+                                            <a class="btn btn-outline-danger" href="{{ back_url }}"><i
+                                                    class="fa fa-arrow-left"></i> Back</a>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-6" style="text-align: end">
+                                        <button class="btn btn-outline-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {#        {% include "includes/footer.html" %}#}
+    </div>
+{% endblock %}

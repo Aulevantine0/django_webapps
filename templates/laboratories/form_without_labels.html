@@ -1,0 +1,25 @@
+{% load widget_tweaks %}
+{% csrf_token %}
+<div class="row">
+
+    {% for field in form %}
+        <div class="form-parent {% if field.field.widget.attrs.col_cls %} {{ field.field.widget.attrs.col_cls }} {% else %} col-md-5 {% endif %} pr-1"
+             {% if field.field.widget.attrs.hidden %}hidden{% endif %}>
+            <div class="form-group">
+{#                <small>{{ field.label }}</small>#}
+                <div class="input-group input-group-merge input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa {{ field.field.widget.attrs.data_icon }}"></i>
+                        </span>
+                    </div>
+                    {% render_field field class="form-control" placeholder=field.label %}
+                </div>
+                <small>{{ field.help_text }}</small>
+                {% for error in field.errors %}
+                    <p class="help-block">{{ error }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</div>

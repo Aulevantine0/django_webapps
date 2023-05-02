@@ -1,0 +1,135 @@
+{% extends 'layouts/base.html' %}
+{% load django_tables2 %}
+{% block content %}
+    <div class="container-fluid py-4">
+    <div class="row">
+    <div class="col-12">
+
+    <div class="card mb-4">
+    {% include 'includes/card-header.html' %}
+    <div class="card-body px-0 pt-0 pb-2">
+        {% render_table table %}
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+    <script>
+        {#let fa_loader = "<i class='fa fa-refresh fa-spin'></i>"#}
+
+        function generate_columns() {
+            let result_table_columns = []
+            {% for col in table_constants %}
+                {% if col == 'actions' %}
+                    result_table_columns.push({"data": "{{ col }}", 'searchable': false,})
+                {% else %}
+                    result_table_columns.push({"data": "{{ col }}"})
+                {% endif %}
+            {% endfor %}
+
+            console.log("test results==", result_table_columns)
+            return result_table_columns
+        }
+    </script>
+    <script>
+        const ajax_route = "{{ api_route }}";
+        $(document).ready(function () {
+            $('.data-table').DataTable({
+
+                "serverSide": true,
+                "order": [],
+
+                "processing": true,
+                "lengthMenu": [[20, 40, 100], [20, 40, 100]],
+                "ajax": {
+                    "url": ajax_route,
+                    "type": "POST",
+                    "beforeSend": function (xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token|escapejs }}");
+                    }
+                },
+                "columns": generate_columns()
+            });
+
+
+        });
+        setTimeout(function () {
+            $('.data-table thead th').each(function () {
+                $(this).find('a').attr('href', 'javascript:;')
+                console.log($(this).text())
+                var title = $(this).text();
+                if (~title.indexOf("Action")) {
+                    $(this).find('input').remove()
+                    $(this).css('text-align', 'center')
+                }
+                {#if (~title.indexOf("Date of birth")) {#}
+                {#    let inputfield = $(this).find('input')#}
+                {#    inputfield.attr('type', 'date')#}
+
+            });
+        }, 100)
+
+    </script>
+    <script>
+        $(document).ready(function () {
+
+        });
+
+    </script>
+
+    <script>
+        function delete_func(val) {
+            let btn = $(val)
+            let link = btn.attr("href")
+            let c = confirm("Are you sure you want to delete this?")
+            if (c) {
+                let icon = btn.find("i")
+                icon.removeClass("fa-trash").addClass("fa-refresh fa-spin")
+                $.ajax({
+                    url: link,
+                    type: 'POST',
+                    success: function (response) {
+                        if (response.success) {
+                            let row = val.closest('tr')
+                            $(row).css('display', 'none')
+                            showNotification('Entry Deleted', "", "success")
+                        } else {
+                            showNotification('Something went wrong')
+                        }
+                    },
+                })
+            }
+            return false
+        }
+    </script>
+    <script>
+        function send_mail_and_sms(val) {
+            let btn = $(val)
+            let link = btn.attr("href")
+            let icon = btn.find("i")
+
+            icon.removeClass("fa-paper-plane").addClass("fa-refresh fa-spin")
+            $.ajax({
+                url: link,
+                type: 'POST',
+                success: function (response) {
+                    if (response.success) {
+                        showNotification('Email Sent!', "", "success")
+                    } else {
+                        showNotification('Something went wrong')
+                    }
+                    icon.removeClass(" fa-refresh fa-spin").addClass("fa-paper-plane")
+                },
+            })
+        }
+    </script>
+    {#    <script>#}
+    {#        $(document).ready(function () {#}
+    {#            $('.table').addClass('custom-table')#}
+    {#        });#}
+    {##}
+    {#    </script>#}
+
+
+
+
+{% endblock %}

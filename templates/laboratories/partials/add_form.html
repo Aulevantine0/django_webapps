@@ -1,0 +1,65 @@
+{% load widget_tweaks %}
+<div class="manage-rows">
+    <div class="row">
+        <div class="col-md-10">
+            {% if labels %}
+                {% include 'laboratories/form.html' with form=form %}
+            {% else %}
+                {% include 'laboratories/form_without_labels.html' with form=form %}
+            {% endif %}
+        </div>
+        <div class="col-md-1">
+            {% if labels %}
+                <button style="margin-top: 26px" type="button" class="btn btn-sm btn-outline-danger js-remove-row"><i
+                        class="fa fa-times-circle"></i></button>
+            {% else %}
+                <button style="margin-top: 2px" type="button" class="btn btn-sm btn-outline-danger js-remove-row"><i
+                        class="fa fa-times-circle"></i></button>
+            {% endif %}
+
+        </div>
+        <div class="col-md-1" style="margin-top: 5px"><i
+                class="fa-solid fa-up-down"></i></div>
+
+    </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+<script>
+    $(".js-remove-row").click(function () {
+        let del = $(this)
+        swal({
+            title: 'Are you sure !',
+            text: "All data related to this ID will be permanently deleted",
+            type: 'warning',
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Delete',
+            cancelButtonText: 'Cancel',
+        });
+        $(".confirm").on("click", function () {
+            del.closest(".row").parent('div').remove()
+        })
+
+
+        {#$(".js-remove-row").closest(".row").parent('div').remove()#}
+
+    })
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script>
+    $(init);
+
+    function init() {
+        $(".extra-html").sortable({
+            connectWith: ".manage-drag",
+            stack: '.manage-drag'
+        }).disableSelection();
+    }
+</script>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="utf-8"/>
+    <title>
+        WebApps2023 - {% block title %}{% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static "/assets/img/images111.png" %}">
+    <link rel="icon" type="image/png" href="{% static "/assets/img/images111.png" %}">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <link href="{% static "/assets/css/nucleo-icons.css" %}" rel="stylesheet"/>
+    <link href="{% static "/assets/css/nucleo-svg.css" %}" rel="stylesheet"/>
+    <link href="{% static "/assets/css/nucleo-svg.css" %}" rel="stylesheet"/>
+    <link href="{% static "/assets/css/style.css" %}" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet"/>
+
+    {#<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>#}
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/yadcf/0.9.4-beta.45/jquery.dataTables.yadcf.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css"/>
+
+    <link id="pagestyle" href="{% static "/assets/css/soft-ui-dashboard.css" %}" rel="stylesheet"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+
+
+    <!-- Specific CSS goes HERE -->
+    {% block stylesheets %}{% endblock stylesheets %}
+    <style>
+        .table-xs {
+            font-size: .75rem !important;
+        }
+
+        .close {
+            border: none;
+            background: none;
+        }
+
+        .paginate_button {
+            border-radius: 25px !important;
+        }
+
+        .table thead th {
+            padding: 0.75rem 0.25rem;
+        }
+
+        @media (max-width: 1199px) {
+            .humburger-icon {
+                display: block !important;
+            }
+
+            .time-show {
+                display: block !important;
+            }
+        }
+
+
+    </style>
+
+</head>
+<body class="g-sidenav-show bg-gray-100">
+
+{% include "includes/navigation.html" %}
+{% if is_admin %}
+    {% include "includes/admin_sidebar.html" %}
+{% else %}
+    {% include "includes/sidebar.html" %}
+{% endif %}
+<main class="main-content mt-4 border-radius-lg">
+
+
+    {% block content %}{% endblock content %}
+
+</main>
+
+{#{% include "includes/fixed-plugin.html" %}#}
+
+{% include "includes/scripts.html" %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}
+
+<!-- Github buttons -->
+{#<script async defer src="https://buttons.github.io/buttons.js"></script>#}
+
+
+<script>
+    $(document).ready(function () {
+        $('select').select2();
+    })
+</script>
+<script>
+    $(".mapping-order-btn").on('click', function () {
+        setTimeout(function () {
+            $('select').select2();
+            // Code to be executed after 2 seconds
+            $('.select2-container').addClass('form-control')
+        }, 100);
+
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        $('.select2-container').addClass('form-control')
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('[name="DataTables_Table_0_length"]').select2('destroy')
+    });
+</script>
+<script>
+    function formatSSN(value) {
+        if (!value) return value;
+        const ssn = value.replace(/[^\d]/g, '');
+        const ssnLength = ssn.length;
+
+        if (ssnLength < 4) return ssn;
+
+        if (ssnLength < 6) {
+            return `${ssn.slice(0, 3)}-${ssn.slice(3)}`;
+        }
+
+        return `${ssn.slice(0, 3)}-${ssn.slice(3, 5)}-${ssn.slice(5, 8)}`;
+    }
+
+    function ssnFormatter() {
+        const inputField = document.getElementById('id_ssn');
+        const formattedInputValue = formatSSN(inputField.value);
+        inputField.value = formattedInputValue;
+    }
+</script>
+</body>
+</html>

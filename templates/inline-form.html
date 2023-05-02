@@ -1,0 +1,16 @@
+{% load widget_tweaks %}
+<form method="get">
+    <div class="row">
+        {% for field in form %}
+            <div class="col-md-3 form-group">
+                <label>{{ field.label }}</label>: {% render_field field %}
+            </div>
+        {% endfor %}
+        <div class="col-md-3 form-group">
+            <label></label>
+            <button style="margin-top: 10%" class="btn btn-sm btn-primary ">Search</button>
+            <a style="margin-top: 10%" class="btn btn-sm btn-warning " href="{% url 'list-results' %}">Reset</a>
+        </div>
+    </div>
+</form>
+<hr>

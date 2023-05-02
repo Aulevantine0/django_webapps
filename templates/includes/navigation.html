@@ -1,0 +1,39 @@
+{% load static %}
+<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
+     navbar-scroll="true">
+    <div class="container-fluid px-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent mb-0 pb-1 px-0 me-sm-6 me-12" style="display: flex;align-items: center;">
+                <li>
+                    <div class="form-group hamburger-logo" style="b">
+                        <a class="navbar-brand m-0" style="padding-left: 12px" href="/">
+                            <img style="width: 170px; max-height: 3.5rem !important;"
+                                 src="{% static "/assets/img/images111.png" %}"
+                                 class="navbar-brand-img" alt="...">
+                            {#        <span class="ms-1 font-weight-bold">Soft UI Dashboard</span>#}
+                        </a>
+                        <a class="humburger-icon ml-5 mt-4
+   float-left" href="#hamburger-icon" onclick="gfgMenu()">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </li>
+                <li class="breadcrumb-item"><a class="opacity-8 text-dark" href="javascript:;">Dashboard</a></li>
+                <li class="breadcrumb-item text-dark active" aria-current="page">
+                    {{ title }}
+                </li>
+            </ol>
+        </nav>
+        <div class="collapse navbar-collapse me-md-0 me-4" id="navbar">
+            <ul class="navbar-nav mb-2 mb-sm-0 ms-sm-auto justify-content-sm-end">
+                <li class="nav-item d-flex align-items-center">
+                    <a href="{% url 'logout' %}"
+                       class="nav-link text-body text-uppercase font-weight-bold px-0">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
